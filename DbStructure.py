@@ -34,7 +34,21 @@ class DbStructure:
                             """)
             logging.info("Success: CREATE TABLE IF NOT EXISTS JOB_DETAILS")
             self.connect.execute("CREATE  INDEX IF NOT EXISTS JOB_DETAILS_IDX ON JOB_DETAILS (job_id)")
-            logging.info("Success: CREATE  INDEX IF NOT EXISTS JOB_DETAILS ON JOB_RAW_DATA")
+            logging.info("Success: CREATE  INDEX IF NOT EXISTS JOB_DETAILS_IDX ON JOB_DETAILS")
+
+            self.connect.execute("""
+                                CREATE TABLE IF NOT EXISTS JOB_ANALYSIS (
+                                    job_id                      number(16, 0) ,
+                                    technically_relevant        number(10, 8) ,
+                                    position_relevant           number(10, 8) ,
+                                    area_relevant               number(10, 8) ,
+                                    relocation_relevant         number(10, 8) ,
+                                    collocations    text
+                                );
+                            """)
+            logging.info("Success: CREATE TABLE IF NOT EXISTS JOB_ANALYSIS")
+            self.connect.execute("CREATE UNIQUE INDEX IF NOT EXISTS JOB_ANALYSIS_IDX ON JOB_ANALYSIS (job_id)")
+            logging.info("Success: CREATE UNIQUE INDEX IF NOT EXISTS JOB_ANALYSIS_IDX ON JOB_ANALYSIS")
         except Exception as ex:
             logging.warning("some SQL error: {}".format(ex))
 

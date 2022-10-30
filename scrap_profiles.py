@@ -8,9 +8,29 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from urllib.parse import urlparse, urlencode, parse_qsl, urlunparse
 
 from DbStructure import DbStructure
 from JobCard import JobCard
+
+
+def get_filter_variations(scrapper_config):
+    result = set()
+    for url in scrapper_config["filter"]:
+        result.add(url)
+
+        for keyword in scrapper_config["filter-keywords"]:
+            url_parts = list(urlparse(url))
+            query = dict(parse_qsl(url_parts[4]))
+            query['keywords'] = keyword
+
+            for sortBy in scrapper_config["filter-sortBy"]:
+                query['sortBy'] = sortBy
+                url_parts[4] = urlencode(query)
+                result.add(urlunparse(url_parts))
+
+    return result
 
 
 class ProfilesScrapper:
@@ -51,7 +71,9 @@ class ProfilesScrapper:
         # buttons = web_driver.find_elements(By.TAG_NAME, "button")
         with open("init.json", "r") as init_file:
             scrapper_config = json.load(init_file)
-            for filter in scrapper_config["filter"]:
+            filters_to_start_with = get_filter_variations(scrapper_config)
+
+            for filter in filters_to_start_with:
                 logging.debug("loading linkedin filter page: %s", filter)
                 web_driver.get(filter)
                 logging.debug("loading linkedin filter page DONE: %s", filter)
@@ -65,14 +87,21 @@ class ProfilesScrapper:
                         break
 
                     for job_link in job_links:
-                        if  job_link not in already_clicked  and not JobCard.checkExistsInDB(self.db.connect, JobCard.parseJobId(job_link)):
+                        if job_link not in already_clicked and not JobCard.checkExistsInDB(self.db.connect,
+                                                                                           JobCard.parseJobId(
+                                                                                               job_link)):
                             job_link.click()
+                            sleep(1)
+                            el = WebDriverWait(web_driver, timeout=5). \
+                                until(lambda d: d.find_element(By.XPATH,
+                                                               """//div[@class="jobs-unified-top-card__content--two-pane"] // li[@class="jobs-unified-top-card__job-insight"] """))
+
                             job_card = JobCard(job_link=job_link, webdriver=web_driver)
                             job_card.parseAttributes()
                             job_card.save_to_db(connect=self.db.connect)
                             already_clicked.add(job_link)
 
-                    scroll_origin = ScrollOrigin.from_element(job_links[len(job_links)-1])
+                    scroll_origin = ScrollOrigin.from_element(job_links[len(job_links) - 1])
                     ActionChains(web_driver) \
                         .scroll_from_origin(scroll_origin, 0, 300) \
                         .scroll_from_origin(scroll_origin, 0, 300) \
@@ -81,7 +110,6 @@ class ProfilesScrapper:
 
                     # sleep(1)
                     job_links = web_driver.find_elements(By.XPATH, xpath_jobs)
-
 
 
 if __name__ == '__main__':
