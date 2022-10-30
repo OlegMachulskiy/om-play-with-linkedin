@@ -1,10 +1,13 @@
+import argparse
 import json
 import logging
-import argparse
+from time import sleep
 
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
+from selenium.webdriver.common.by import By
 
 from DbStructure import DbStructure
 from JobCard import JobCard
@@ -53,15 +56,32 @@ class ProfilesScrapper:
                 web_driver.get(filter)
                 logging.debug("loading linkedin filter page DONE: %s", filter)
 
-                joblinks = web_driver.find_elements(By.XPATH,
-                                                    """// ul[@class = "scaffold-layout__list-container"] / li // a[@class="disabled ember-view job-card-container__link job-card-list__title"]""")
+                xpath_jobs = """// ul[@class = "scaffold-layout__list-container"] / li // a[@class="disabled ember-view job-card-container__link job-card-list__title"]"""
 
-                for job_link in joblinks:
-                    job_href = job_link.get_attribute("href")
-                    job_link.click()
-                    job_card = JobCard(job_href=job_href, webdriver=web_driver)
-                    job_card.parseAttributes()
-                    job_card.save_to_db(connect=self.db.connect)
+                already_clicked = set()
+                job_links = web_driver.find_elements(By.XPATH, xpath_jobs)
+                while (True):
+                    if len(job_links) >= 25:
+                        break
+
+                    for job_link in job_links:
+                        if  job_link not in already_clicked  and not JobCard.checkExistsInDB(self.db.connect, JobCard.parseJobId(job_link)):
+                            job_link.click()
+                            job_card = JobCard(job_link=job_link, webdriver=web_driver)
+                            job_card.parseAttributes()
+                            job_card.save_to_db(connect=self.db.connect)
+                            already_clicked.add(job_link)
+
+                    scroll_origin = ScrollOrigin.from_element(job_links[len(job_links)-1])
+                    ActionChains(web_driver) \
+                        .scroll_from_origin(scroll_origin, 0, 300) \
+                        .scroll_from_origin(scroll_origin, 0, 300) \
+                        .scroll_from_origin(scroll_origin, 0, 300) \
+                        .perform()
+
+                    # sleep(1)
+                    job_links = web_driver.find_elements(By.XPATH, xpath_jobs)
+
 
 
 if __name__ == '__main__':

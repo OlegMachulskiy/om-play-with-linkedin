@@ -4,25 +4,37 @@ import logging
 
 class DbStructure:
 
-    def __init__(self, db_name = "text-cache.sqlite"):
+    def __init__(self, db_name="text-cache.sqlite"):
         self.connect = sqlite3.connect(db_name)
 
         try:
             self.connect.execute("""
                     CREATE TABLE IF NOT EXISTS JOB_RAW_DATA (
                         job_id          number(16, 0) ,
-                        job_href        TEXT,  
+                        job_href        TEXT,
+                        job_title       VARCHAR(500),
                         full_html       TEXT, 
-                        company         VARCHAR(250), 
-                        company_href    VARCHAR(250),
-                        company_desc    VARCHAR(500),
-                        location        VARCHAR(250),
-                        job_type        VARCHAR(250)
+                        full_text       TEXT, 
+                        company_name    VARCHAR(500), 
+                        company_href    VARCHAR(500),
+                        location        VARCHAR(500),
+                        job_type        VARCHAR(500)
                     );
                 """)
             logging.info("Success: CREATE TABLE IF NOT EXISTS JOB_RAW_DATA")
             self.connect.execute("CREATE UNIQUE INDEX IF NOT EXISTS JOB_RAW_DATA_IDX ON JOB_RAW_DATA (job_id)")
             logging.info("Success: CREATE UNIQUE INDEX IF NOT EXISTS JOB_RAW_DATA_IDX ON JOB_RAW_DATA")
+
+            self.connect.execute("""
+                                CREATE TABLE IF NOT EXISTS JOB_DETAILS (
+                                    job_id          number(16, 0) ,
+                                    insight_text    text     , 
+                                    insight_href    text     
+                                );
+                            """)
+            logging.info("Success: CREATE TABLE IF NOT EXISTS JOB_DETAILS")
+            self.connect.execute("CREATE  INDEX IF NOT EXISTS JOB_DETAILS_IDX ON JOB_DETAILS (job_id)")
+            logging.info("Success: CREATE  INDEX IF NOT EXISTS JOB_DETAILS ON JOB_RAW_DATA")
         except Exception as ex:
             logging.warning("some SQL error: {}".format(ex))
 
