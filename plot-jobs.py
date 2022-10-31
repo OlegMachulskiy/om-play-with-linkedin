@@ -10,7 +10,7 @@ sql = """
 select 
 	jrd.job_href , jrd.job_title , jrd.location , jrd.company_name ,
 	technically_relevant , position_relevant, area_relevant , relocation_relevant, irrelevant_relevant, 
-	cosine_similarity, 	ja.collocations 
+	cosine_similarity, 	ja.collocations , cosine_irrelevant
 from JOB_ANALYSIS ja
 join JOB_RAW_DATA jrd on ja.job_id = jrd.job_id   
     """
@@ -30,7 +30,7 @@ class JobsPlot:
 
         chart = alt.Chart(my_df).mark_point().encode(
             x='cosine_similarity',
-            y='irrelevant_relevant',
+            y='cosine_irrelevant',
             color='technically_relevant',
             href='job_href',
             tooltip=['job_title', 'location', 'company_name', 'job_href'],

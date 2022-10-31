@@ -42,7 +42,7 @@ class CorpusSimilarityCalculator(AbstractCalculator):
     def get_hash(self):
         m = hashlib.sha256()
         for f in self.files:
-            text = open(self.corpus_dir + "/" + f, "r").read()
+            text = open(self.corpus_dir + "/" + f, "r", encoding="utf-8").read()
             m.update(text.encode("utf-8"))
         return m.hexdigest()
 
@@ -53,7 +53,7 @@ class CorpusSimilarityCalculator(AbstractCalculator):
 
         cosine_result = []
         for f in self.files:
-            low_text = open(self.corpus_dir + "/" + f, "r").read().lower()
+            low_text = open(self.corpus_dir + "/" + f, "r", encoding="utf-8").read().lower()
             # corpus_tokens = word_tokenize(low_text)
             # corpus_text = nltk.Text(corpus_tokens)
             cosine_result.append(cosine_sim(job_desc, low_text))

@@ -47,7 +47,10 @@ class DbStructure:
                                     irrelevant_relevant         number(10, 8) ,
                                     hash_keywords               varchar(200),
                                     cosine_similarity           number(10, 8), 
-                                    hash_corpus                 varchar(200)
+                                    hash_corpus                 varchar(200), 
+                                    cosine_irrelevant           number(10, 8), 
+                                    hash_corpus_irrelevant      varchar(200), 
+                                    updated_at                  datetime 
                                 );
                             """)
             logging.info("Success: CREATE TABLE IF NOT EXISTS JOB_ANALYSIS")
