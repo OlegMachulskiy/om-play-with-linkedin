@@ -48,8 +48,8 @@ class JobCard:
             company_link_span = job_card.find_elements(By.XPATH,
                                                        """//span[@class = "jobs-unified-top-card__company-name"]  """)
             if len(company_link_span) > 0:
-                self.company_name = self.full_text = BeautifulSoup(
-                    company_link_span[0].get_attribute('innerHTML')).get_text()
+                self.company_name = self.full_text = BeautifulSoup(company_link_span[0].get_attribute('innerHTML'),
+                                                                   features="html.parser").get_text()
                 self.company_href = company_link_span[0].get_attribute('innerHTML')
             else:
                 self.company_name = "cannot parse"

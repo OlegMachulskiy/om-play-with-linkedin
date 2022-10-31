@@ -7,12 +7,12 @@ import pandas
 from DbStructure import DbStructure
 
 sql = """
-    select 
-        jrd.job_href , jrd.job_title , jrd.location , jrd.company_name ,
-        technically_relevant , position_relevant, area_relevant , relocation_relevant, 
-        ja.collocations , ja.job_id 
-    from JOB_ANALYSIS ja
-    join JOB_RAW_DATA jrd on ja.job_id = jrd.job_id  
+select 
+	jrd.job_href , jrd.job_title , jrd.location , jrd.company_name ,
+	technically_relevant , position_relevant, area_relevant , relocation_relevant, irrelevant_relevant, 
+	cosine_similarity, 	ja.collocations 
+from JOB_ANALYSIS ja
+join JOB_RAW_DATA jrd on ja.job_id = jrd.job_id   
     """
 
 
@@ -29,8 +29,8 @@ class JobsPlot:
         # plt.show()
 
         chart = alt.Chart(my_df).mark_point().encode(
-            x='position_relevant',
-            y='area_relevant',
+            x='cosine_similarity',
+            y='irrelevant_relevant',
             color='technically_relevant',
             href='job_href',
             tooltip=['job_title', 'location', 'company_name', 'job_href'],

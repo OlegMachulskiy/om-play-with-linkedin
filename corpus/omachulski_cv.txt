@@ -1,0 +1,84 @@
+Oleg Machulski
+Date of birth: 16.07.1974 (Moscow)
+E-mail: omachulski@gmail.com
+cell +7(926)920-03-38
+
+
+SUMMARY OF EXPERTISE
+Over 10 years of experience in IT project leadership, plus over 15 years of experience in software design and development. Key area of experience - fin-tech - banking, exchange,  oil logistics in the past.  Experience of working in both multinational and Russian companies providing development and simultaneous management of several projects. Deep involvement into the technical side of the project, including architecture design and code review.
+Fluent English, Basic German.
+
+OBJECTIVE
+Due to political risks, I've decided to seek a job outside Russia to work in a multinational hi-tech IT company. Preferred work locations - European Union, Mediterranean, Germany, Austria, Netherlands, US, UK.
+
+My ideal job is a project, where I would be responsible for both technical decisions and delivering project goals. 50%/50%  is ideal.  Project can consist of several simultaneous work streams, but I’m not considering pure management positions like PMO or program manager, mostly related to budgets justification, preparing presentations, planning team capacity, etc.
+
+I’m not considering job proposals from ex-USSR countries, because I already have a dream job here, where I can utilize my both technical and leadership skills.
+
+EDUCATION
+1991 - 1997: Diploma in Mathematics, Department of Mechanics and Mathematics, Lomonosov Moscow State University
+1995 - 1997: Diploma at Higher Computer School, Lomonosov Moscow State University, Russia.
+1997 - 2000: PHd postgraduate education at Institute of Informatics Problems, Russian Academy of Science.
+
+
+Professional Experience
+sep.2017 - present - Moscow exchange (www.moex.com) Position - Senior solutions architect and delivery manager.
+2017-2019 - Led development of derivatives exchange back-office platform. Team of 8ppl, migration from outdated stack to new architecture. Developing new features in parallel. Stack - Java, J2EE, Spring Cloud microservices, Vaadin-based UI. My role: Leading the team, designing architecture and CI, reviewing code and prototyping implementations.
+2019 - 2021 - migration of stock exchange backoffice from legacy architecture to microservices and BPMN-driven solution. project from scratch, java+react js stack, gitlab ci, kubernetes deployment, more than 10 integrations both synchronous and asynchronous, camunda-BPM orchestration. Team of approx.25ppl. My role: Leading the team, designing architecture and CI, reviewing code and prototyping implementation, establishing support processes
+2021 - present - IT leader and architect of CSD back-office system. System handles all customer support operations: KYC processes, regulatory checks, processing technical requests related to HFT servers and trading logins, listing new stock market bonds and shares. Splitting legacy java application into collection of business-area oriented microservices. Migrating business-logic from data layer (PL/SQL) to BPMN-aware services. My role: Leading the team, designing architecture, prototyping, organizing and leading demos with customers
+
+2017-2021 - Personal coding activities for fun:
+set of python-based tools to transcribe GPS track files (GPX) into geo-decoded names of cities visited, names of rivers passed by, etc.
+Set of python scripts intended to scrap official goverment resources into a local database. I was collecting information about purchases in the municipal services and names of affiliated persons and companies. Technically It was based on the Selenium web driver. Included load balancing of requests thru public proxy servers to avoid IP blocking and breaking captures, using OCR libraries.
+
+feb.2012 - sep.2017 - Luxoft (www.luxoft.com)
+Position Program Manager. 2 programs with total headcount around 60 ppl, 4 direct subordinate PMs, around 10 projects running in parallel.
+Starting 2016 - *Insurance Product Company* program - Data analysis project in the area of Insurance, total program headcount - 6 ppl.
+Starting 2016 - *Financial Market Product Company* program - up to 10 simultaneous projects in the financial area, total program headcount - up to 55 ppl.
+2014-2015 - *Top 5 financial rating company*, Publishing Wave2 project - development of functionality within in-house publishing system based on Quark Publishing and Pega platforms. Plus series of several other project. Total HC up to 15 ppl
+2014-2015 - *Financial Market Product Company*, development and support of data mining project, which uses web crawling and crowdsourcing approaches to gather data (Java stack, WebHarvest, Selenium); Total HC up to 20 ppl
+2013-2014 - *International Bank*  - data warehouse development and support , reports for risk department; deployment of ODS subsystem (Oracle DB, Oracle Streams);
+2012 - 2013 - *Top 5 russian bank*, MIS data warehouse project - gathering data and reporting for back-office effectiveness analysis (Teradata, Informatica, Oracle, In-house Sberbank technologies); Fixed price project with HC up to 45 ppl and duration around 1 year
+
+
+
+July 2010-February2011 : TB-Inform (TNK-BP Group)  Position: Project Manager
+Deployment of production planning system in TNK-Lubricants (www.tnk-oil.ru) for Ryazan lubricants factory (Ortems planning system, SAP integration); took significant part in development of integration bridge between SAP ERP and Ortems system based on Microsoft Integration Services.
+
+2008-February2012 : RH Consulting;  Position: Project Manager
+Renaissance Credit Bank  data warehouse development and support, system for support of overdued debts, intranet portal (Informatica, Oracle)
+KMB-Bank (Intesa Sanpaolo subsidiary), data warehouse development and support, Support of migration from IPC ABS to Temenos T24, system for collecting of overdued debts, intranet portal (MS Integration, MS SQL)
+
+December 2007 – 2008: Freelance
+	MIDAS - System for market research data processing and analysis. Includes support of tracking researches, through all stages of the process, including questionary preparation, 			 survey data input, internet surveys, data analysis and presentation building. System was developed with the team of 6 remote developers.
+	KMB-BANK – System for analysis of liquidity position for the treasury.
+
+April 2005 – November 2007: ICICALL Consulting, Moscow, Russia (http://www.icicall.com).
+IT consulting for oil and gas companies. Position: Project Manager
+Implemented Projects:
+Lukoil Downstream Online – Web-Based Supply Chain Management system, which handles all deliveries of petroleum products and lubricants from Russian refineries to export and domestic markets. Te system integrates into common informational space company head office, refineries, regional retail operator companies, ports, logistics surveyors, etc.; Key Achievements: Managed project from start-up to full implementation, implemented total analysis, implemented organization scheme of project. Organized pipeline of follow-up projects, prepared presentations and project budgets. Managed to make this project be the main success story for our company and thus it allows successfully attract new customers.
+Consultancy project for Gasprom-Neft in the area of logistics optimization (supplies of petroleum products  to domestic market). Key Achievements: organized project development process, including data gathering, analysis and investment project development using balanced scorecards methodology. Supervised consultancy reports on petrochemicals logistics for 12 regional companies.
+Consultancy project for Lukoil-Tsentrnefteproduct (www.luknef.ru) in the area of logistics optimization; Key Achievements: Prepared sales presentations and project budget evaluation. Managed project from start-up, developed project methodology, which allowed to identify key bottlenecks in client's business and propose effective solutions. Was as a key contact person to the client.
+System for GKZ RF (www.gkz-rf.ru), aimed to handle geological expertise of mineral deposits;  Key Achievements: organized project development process, including analysis of business requirements, prototyping, overall system design, development process and guidelines. Participated in development.
+Lukoil-NizhnevolzhskNeft - business analysis and software requirements for Astrakhan Logistics Center,; Key Achievements: implemented total analysis of business requirements, Managed the team to prepare final project materials, including software requirements, diagrams, presentations.
+iDeal - solution for Oil Tading and SCM. supply chain management, PnL calculation of portfolio, containing physical deals, futures hedging deals and swap deals; Key Achievements: implemented analysis of business requirements, software design and prototyping. Main contact person on this project for several small client companies.
+Business analysis and software requirements of operations management software for Narjanmarneftegaz; Key Achievements: analysis of business requirements.
+	Responsibilities:
+∙         being a Key contact person to the client from delivery;
+∙         identifying client needs, business objectives and future engagement opportunities;
+∙         preparing proposals and project budgets;
+∙         producing and maintaining project work plan and status reports, managing tasks and resources;
+∙         participating in system functionality design and development.
+Environment and Tools: MS Project, MS Office, Java, SQL, XML, Rational Rose, ErWIN.
+
+April 2003 - April 2005: OILspace Inc., Moscow, Russia (www.oilspace.com)
+		IT consulting for oil and gas companies. Position: Team Leader.
+		Implemented Projects: CRM/SCM software solution for oil industry.
+		Responsibilities: manage team of 9 developers and 3 QA engineers, being contact person to the client, perform business analysis, define project development directions, prepare 				proposals, maintain project plans, lead system development.
+		Key Achievements: joined the project as a lead developer, sustained the project when the project team lost two key persons, became main contact person to the client and team leader.
+		Environment and Tools: Java, XML; MS Project, MS Office
+
+
+1995 - 2003: software developer in various companies
+
+

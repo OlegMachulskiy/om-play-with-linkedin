@@ -39,11 +39,15 @@ class DbStructure:
             self.connect.execute("""
                                 CREATE TABLE IF NOT EXISTS JOB_ANALYSIS (
                                     job_id                      number(16, 0) REFERENCES JOB_RAW_DATA(job_id) ON DELETE CASCADE ,
+                                    collocations                text,  
                                     technically_relevant        number(10, 8) ,
                                     position_relevant           number(10, 8) ,
                                     area_relevant               number(10, 8) ,
                                     relocation_relevant         number(10, 8) ,
-                                    collocations    text
+                                    irrelevant_relevant         number(10, 8) ,
+                                    hash_keywords               varchar(200),
+                                    cosine_similarity           number(10, 8), 
+                                    hash_corpus                 varchar(200)
                                 );
                             """)
             logging.info("Success: CREATE TABLE IF NOT EXISTS JOB_ANALYSIS")

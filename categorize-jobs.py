@@ -4,22 +4,32 @@ import logging
 import math
 
 import nltk
-from nltk import word_tokenize, Text
+from nltk import word_tokenize
 from nltk.corpus import stopwords
 
 from DbStructure import DbStructure
+from similarity.CorpusSimilarity import CorpusSimilarityCalculator
+from similarity.Keywords import KeywordsCalculator
 
 
 class JobsCategorizer:
     def __init__(self):
         self.db = DbStructure()
-        with open("init.json", "r") as init_file:
-            self.config = json.load(init_file)
+        self.config = json.load(open("init.json", "r"))
+
+        self.stop_words = [",", "?", "/", ")", "("]
+        self.stop_words.extend(stopwords.words('english'))
+        self.stop_words.extend(stopwords.words('german'))
+
+    def get_text_collocations(self, job_desc):
+        text = nltk.Text(word_tokenize(job_desc.lower()))
+        fd_bigrams = nltk.FreqDist(
+            [b for b in nltk.bigrams(text) if b[0] not in self.stop_words and b[1] not in self.stop_words])
+
+        return fd_bigrams.most_common(10)
+
 
     def run(self):
-        stop_words = [",", "?"]
-        stop_words.extend(stopwords.words('english'))
-        stop_words.extend(stopwords.words('german'))
 
         fetchall = self.db.connect.execute("SELECT job_id, full_text, job_title, location FROM JOB_RAW_DATA").fetchall()
 
@@ -28,33 +38,63 @@ class JobsCategorizer:
             counter -= 1
             if counter % 50 == 0:
                 print("Left to process:{}%".format(int(counter * 100 / len(fetchall))))
+
             job_id = row[0]
-            raw_text = row[1].lower()
-            tokens = word_tokenize(raw_text)
-            text = Text(tokens)
-            fd = nltk.FreqDist(text)
+            hash_keywords = ""
+            hash_corpus = ""
 
-            textLen = len(text) if len(text) > 0 else 1
-            technically_relevant = sum([fd[k] for k in self.config["technically_relevant"]]) / textLen
-            position_relevant = sum([fd[k] for k in self.config["position_relevant"]]) / textLen
-            area_relevant = sum([fd[k] for k in self.config["area_relevant"]]) / textLen
-            relocation_relevant = sum([fd[k] for k in self.config["relocation_relevant"]]) / textLen
+            sqlRes = self.db.connect.execute(
+                """select job_id, collocations, hash_keywords, hash_corpus from JOB_ANALYSIS where job_id=?""",
+                [job_id]).fetchall()
+            if len(sqlRes) == 0:
+                self.db.connect.execute(
+                    """insert into JOB_ANALYSIS (job_id, collocations, hash_keywords, hash_corpus ) values (?,?,?,?)""",
+                    [job_id, str(self.get_text_collocations(row[1])), "", ""]
+                )
+            else:
+                hash_keywords = sqlRes[0][2]
+                hash_corpus = sqlRes[0][3]
 
-            fd_bigrams = nltk.FreqDist(
-                [b for b in nltk.bigrams(text) if b[0] not in stop_words and b[1] not in stop_words])
+            kc = KeywordsCalculator(self.config["technically_relevant"],
+                                    self.config["position_relevant"],
+                                    self.config["area_relevant"],
+                                    self.config["relocation_relevant"],
+                                    self.config["irrelevant_relevant"]
+                                    )
 
-            collocations = fd_bigrams.most_common(10)
+            if hash_keywords != kc.get_hash():
+                result = kc.calc_similarity(row[1])
 
-            logging.info("%s\t%s\t%s\t%s", )
-            self.db.connect.execute("""delete from JOB_ANALYSIS where job_id=?""", [job_id])
-            self.db.connect.execute(
-                """insert into JOB_ANALYSIS (job_id, technically_relevant, position_relevant, area_relevant, relocation_relevant, collocations ) values (?,?,?,?,?,?)""",
-                [job_id,
-                 math.log(1 + technically_relevant),
-                 math.log(1 + position_relevant),
-                 math.log(1 + area_relevant),
-                 math.log(1 + relocation_relevant),
-                 str(collocations)])
+                self.db.connect.execute(
+                    """update JOB_ANALYSIS set 
+                        technically_relevant=?, 
+                        position_relevant=?, 
+                        area_relevant=?, 
+                        relocation_relevant=?,
+                        irrelevant_relevant=?,
+                        hash_keywords=?
+                        WHERE job_id=?""",
+                    [math.log(1 + result['technically_relevant']),
+                     math.log(1 + result['position_relevant']),
+                     math.log(1 + result['area_relevant']),
+                     math.log(1 + result['relocation_relevant']),
+                     math.log(1 + result['irrelevant_relevant']),
+                     kc.get_hash(),
+                     job_id])
+
+            corpus_calc = CorpusSimilarityCalculator("./corpus")
+
+            if hash_corpus != corpus_calc.get_hash():
+                result = corpus_calc.calc_similarity(row[1])
+                self.db.connect.execute(
+                    """update JOB_ANALYSIS set 
+                        cosine_similarity=?, 
+                        hash_corpus=?
+                        WHERE job_id=?""",
+                    [math.log(1 + result['cosine_similarity']),
+                     corpus_calc.get_hash(),
+                     job_id])
+
             self.db.connect.commit()
 
 

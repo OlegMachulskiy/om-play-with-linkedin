@@ -4,22 +4,29 @@
     "https://www.linkedin.com/jobs/search/?currentJobId=3299443836&f_E=3&f_F=it&f_I=43%2C6%2C4%2C96&f_WT=1%2C3&geoId=102221843&keywords=relocation%20java&location=North%20America&refresh=true&sortBy=R",
     "https://www.linkedin.com/jobs/search/?currentJobId=3301779528&f_E=3&f_F=it&f_I=43%2C6%2C4%2C96&f_WT=1%2C3&geoId=101165590&keywords=Delivery%20Manager&location=United%20Kingdom&refresh=true&sortBy=R",
     "https://www.linkedin.com/jobs/search/?currentJobId=3329553135&f_E=3&f_F=it&f_I=43%2C6%2C4%2C96&f_WT=1%2C3&geoId=91000000&keywords=Python&location=European%20Union&refresh=true&sortBy=R",
-    "https://www.linkedin.com/jobs/search/?currentJobId=2990504911&geoId=102454443&keywords=project%20manager&location=Singapore&refresh=true"
+    "https://www.linkedin.com/jobs/search/?currentJobId=2990504911&geoId=102454443&keywords=project%20manager&location=Singapore&refresh=true",
+    "https://www.linkedin.com/jobs/search/?currentJobId=3295437772&f_E=3&f_F=it&f_I=43%2C6%2C4%2C96&f_WT=1%2C3&geoId=91000015&keywords=project%20manager&location=Australia%20and%20New%20Zealand&refresh=true&sortBy=DD"
   ],
-  "filter-keywords" : [
-      "python",
-      "delivery manager",
-      "project manager",
-      "architect manager",
-      "java architect"
+  "filter-keywords": [
+    "python",
+    "delivery manager",
+    "project manager",
+    "architect manager",
+    "java architect",
+    "relocation",
+    "system analyst",
+    "solution architect",
+    "data scientist",
+    "data warehouse"
   ],
-  "filter-sortBy" : [
-      "R",
-      "DD"
+  "filter-sortBy": [
+    "R",
+    "DD"
   ],
   "technically_relevant": [
     "java",
     "spring",
+    "hibernate",
     "python",
     "sql",
     "postgres",
@@ -45,5 +52,15 @@
     "visa",
     "sponsorship",
     "h1"
+  ],
+  "irrelevant_relevant": [
+    "budget",
+    "budgets",
+    "hiring",
+    "staffing",
+    "electrical",
+    "telecommunication",
+    "construction",
+    "jobot"
   ]
 }

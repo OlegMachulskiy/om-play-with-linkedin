@@ -94,25 +94,28 @@ class ProfilesScrapper:
                                                                                                job_link)):
                             job_link.click()
                             sleep(1)
-                            el = WebDriverWait(web_driver, timeout=5). \
-                                until(lambda d: d.find_element(By.XPATH,
-                                                               """//div[@class="jobs-unified-top-card__content--two-pane"] // li[@class="jobs-unified-top-card__job-insight"] """))
                             try:
+                                el = WebDriverWait(web_driver, timeout=5). \
+                                    until(lambda d: d.find_element(By.XPATH,
+                                                                   """//div[@class="jobs-unified-top-card__content--two-pane"] // li[@class="jobs-unified-top-card__job-insight"] """))
+
                                 job_card = JobCard(job_link=job_link, webdriver=web_driver)
                                 job_card.parseAttributes()
                                 job_card.save_to_db(connect=self.db.connect)
                                 already_clicked.add(job_link)
+
+                                scroll_origin = ScrollOrigin.from_element(job_links[len(job_links) - 1])
+                                ActionChains(web_driver) \
+                                    .scroll_from_origin(scroll_origin, 0, 300) \
+                                    .scroll_from_origin(scroll_origin, 0, 300) \
+                                    .scroll_from_origin(scroll_origin, 0, 300) \
+                                    .perform()
+
                             except Exception as ex:
                                 logging.error("Something happened {}, skipping this job: {}", ex, job_link.text)
+                                continue
 
-                    scroll_origin = ScrollOrigin.from_element(job_links[len(job_links) - 1])
-                    ActionChains(web_driver) \
-                        .scroll_from_origin(scroll_origin, 0, 300) \
-                        .scroll_from_origin(scroll_origin, 0, 300) \
-                        .scroll_from_origin(scroll_origin, 0, 300) \
-                        .perform()
-
-                    job_links = web_driver.find_elements(By.XPATH, xpath_jobs)
+                        job_links = web_driver.find_elements(By.XPATH, xpath_jobs)
 
 
 if __name__ == '__main__':
