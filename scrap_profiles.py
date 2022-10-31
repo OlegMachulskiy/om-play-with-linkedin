@@ -2,6 +2,7 @@ import argparse
 import json
 import logging
 from time import sleep
+from urllib.parse import urlparse, urlencode, parse_qsl, urlunparse
 
 from selenium import webdriver
 from selenium.webdriver import ActionChains
@@ -9,7 +10,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from urllib.parse import urlparse, urlencode, parse_qsl, urlunparse
 
 from DbStructure import DbStructure
 from JobCard import JobCard
@@ -82,9 +82,11 @@ class ProfilesScrapper:
 
                 already_clicked = set()
                 job_links = web_driver.find_elements(By.XPATH, xpath_jobs)
+                number_of_iterations = 25
                 while (True):
-                    if len(job_links) >= 25:
+                    if len(job_links) >= 25 or number_of_iterations < 0:
                         break
+                    number_of_iterations -= 1
 
                     for job_link in job_links:
                         if job_link not in already_clicked and not JobCard.checkExistsInDB(self.db.connect,
@@ -95,11 +97,13 @@ class ProfilesScrapper:
                             el = WebDriverWait(web_driver, timeout=5). \
                                 until(lambda d: d.find_element(By.XPATH,
                                                                """//div[@class="jobs-unified-top-card__content--two-pane"] // li[@class="jobs-unified-top-card__job-insight"] """))
-
-                            job_card = JobCard(job_link=job_link, webdriver=web_driver)
-                            job_card.parseAttributes()
-                            job_card.save_to_db(connect=self.db.connect)
-                            already_clicked.add(job_link)
+                            try:
+                                job_card = JobCard(job_link=job_link, webdriver=web_driver)
+                                job_card.parseAttributes()
+                                job_card.save_to_db(connect=self.db.connect)
+                                already_clicked.add(job_link)
+                            except Exception as ex:
+                                logging.error("Something happened {}, skipping this job: {}", ex, job_link.text)
 
                     scroll_origin = ScrollOrigin.from_element(job_links[len(job_links) - 1])
                     ActionChains(web_driver) \
@@ -108,7 +112,6 @@ class ProfilesScrapper:
                         .scroll_from_origin(scroll_origin, 0, 300) \
                         .perform()
 
-                    # sleep(1)
                     job_links = web_driver.find_elements(By.XPATH, xpath_jobs)
 
 

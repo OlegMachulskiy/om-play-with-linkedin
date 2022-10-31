@@ -1,10 +1,11 @@
 import argparse
 import json
 import logging
-from nltk.corpus import stopwords
+import math
 
 import nltk
 from nltk import word_tokenize, Text
+from nltk.corpus import stopwords
 
 from DbStructure import DbStructure
 
@@ -15,7 +16,6 @@ class JobsCategorizer:
         with open("init.json", "r") as init_file:
             self.config = json.load(init_file)
 
-
     def run(self):
         stop_words = [",", "?"]
         stop_words.extend(stopwords.words('english'))
@@ -23,20 +23,25 @@ class JobsCategorizer:
 
         fetchall = self.db.connect.execute("SELECT job_id, full_text, job_title, location FROM JOB_RAW_DATA").fetchall()
 
+        counter = len(fetchall)
         for row in fetchall:
+            counter -= 1
+            if counter % 50 == 0:
+                print("Left to process:{}%".format(int(counter * 100 / len(fetchall))))
             job_id = row[0]
             raw_text = row[1].lower()
             tokens = word_tokenize(raw_text)
             text = Text(tokens)
             fd = nltk.FreqDist(text)
 
-            technically_relevant = sum([fd[k] for k in self.config["technically_relevant"]]) / len(text)
-            position_relevant = sum([fd[k] for k in self.config["position_relevant"]]) / len(text)
-            area_relevant = sum([fd[k] for k in self.config["area_relevant"]]) / len(text)
-            relocation_relevant = sum([fd[k] for k in self.config["relocation_relevant"]]) / len(text)
+            textLen = len(text) if len(text) > 0 else 1
+            technically_relevant = sum([fd[k] for k in self.config["technically_relevant"]]) / textLen
+            position_relevant = sum([fd[k] for k in self.config["position_relevant"]]) / textLen
+            area_relevant = sum([fd[k] for k in self.config["area_relevant"]]) / textLen
+            relocation_relevant = sum([fd[k] for k in self.config["relocation_relevant"]]) / textLen
 
-
-            fd_bigrams = nltk.FreqDist([b for b in nltk.bigrams(text) if b[0] not in stop_words and b[1] not in stop_words])
+            fd_bigrams = nltk.FreqDist(
+                [b for b in nltk.bigrams(text) if b[0] not in stop_words and b[1] not in stop_words])
 
             collocations = fd_bigrams.most_common(10)
 
@@ -44,7 +49,11 @@ class JobsCategorizer:
             self.db.connect.execute("""delete from JOB_ANALYSIS where job_id=?""", [job_id])
             self.db.connect.execute(
                 """insert into JOB_ANALYSIS (job_id, technically_relevant, position_relevant, area_relevant, relocation_relevant, collocations ) values (?,?,?,?,?,?)""",
-                [job_id, technically_relevant, position_relevant, area_relevant, relocation_relevant,
+                [job_id,
+                 math.log(1 + technically_relevant),
+                 math.log(1 + position_relevant),
+                 math.log(1 + area_relevant),
+                 math.log(1 + relocation_relevant),
                  str(collocations)])
             self.db.connect.commit()
 

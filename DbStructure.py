@@ -1,5 +1,5 @@
-import sqlite3
 import logging
+import sqlite3
 
 
 class DbStructure:
@@ -10,7 +10,7 @@ class DbStructure:
         try:
             self.connect.execute("""
                     CREATE TABLE IF NOT EXISTS JOB_RAW_DATA (
-                        job_id          number(16, 0) ,
+                        job_id          number(16, 0) PRIMARY KEY,
                         job_href        TEXT,
                         job_title       VARCHAR(500),
                         full_html       TEXT, 
@@ -38,7 +38,7 @@ class DbStructure:
 
             self.connect.execute("""
                                 CREATE TABLE IF NOT EXISTS JOB_ANALYSIS (
-                                    job_id                      number(16, 0) ,
+                                    job_id                      number(16, 0) REFERENCES JOB_RAW_DATA(job_id) ON DELETE CASCADE ,
                                     technically_relevant        number(10, 8) ,
                                     position_relevant           number(10, 8) ,
                                     area_relevant               number(10, 8) ,

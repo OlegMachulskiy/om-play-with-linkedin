@@ -1,12 +1,9 @@
 import logging
 import re
-from time import sleep
 
 from bs4 import BeautifulSoup
-
 # JobCard - parse LinkedIn job page with already opened job description
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 class JobDetailsItem:
@@ -34,9 +31,9 @@ class JobCard:
         self.full_html = self.job_body_element.get_attribute('innerHTML')
         self.full_text = BeautifulSoup(self.full_html, features="html.parser").get_text()
 
-        location_element = self.job_body_element.find_element(By.XPATH, """ // div[@class="jobs-unified-top-card__primary-description"] // span[@class="jobs-unified-top-card__bullet"]""")
+        location_element = self.job_body_element.find_element(By.XPATH,
+                                                              """ // div[@class="jobs-unified-top-card__primary-description"] // span[@class="jobs-unified-top-card__bullet"]""")
         self.location = BeautifulSoup(location_element.get_attribute('innerHTML'), features="html.parser").get_text()
-
 
     def parseAttributes(self):
         job_card = self.webdriver.find_element(By.XPATH,
@@ -57,7 +54,6 @@ class JobCard:
             else:
                 self.company_name = "cannot parse"
                 self.company_href = "cannot parse"
-
 
         job_insights = job_card.find_elements(By.XPATH, """.//li[@class="jobs-unified-top-card__job-insight"]/span""")
         self.job_details_items = [JobDetailsItem(elem) for elem in job_insights]
