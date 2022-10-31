@@ -10,8 +10,12 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 from similarity import AbstractCalculator
 
+nltk.download('stopwords')
+nltk.download('punkt')
+
 stemmer = nltk.stem.porter.PorterStemmer()
 remove_punctuation_map = dict((ord(char), None) for char in string.punctuation)
+
 
 
 def stem_tokens(tokens):

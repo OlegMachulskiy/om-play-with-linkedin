@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging
+import traceback
 from time import sleep
 from urllib.parse import urlparse, urlencode, parse_qsl, urlunparse
 
@@ -91,9 +92,10 @@ class ProfilesScrapper:
                     for job_link in job_links:
                         if job_link not in already_clicked and not JobCard.checkExistsInDB(self.db.connect,
                                                                                            parseJobId(job_link)):
-                            job_link.click()
-                            sleep(1)
                             try:
+                                job_link.click()
+                                sleep(1)
+
                                 el = WebDriverWait(web_driver, timeout=5). \
                                     until(lambda d: d.find_element(By.XPATH,
                                                                    """//div[@class="jobs-unified-top-card__content--two-pane"] // li[@class="jobs-unified-top-card__job-insight"] """))
@@ -111,7 +113,8 @@ class ProfilesScrapper:
                                     .perform()
 
                             except Exception as ex:
-                                logging.error("Something happened {}, skipping this job: {}", ex, job_link.text)
+                                print(traceback.format_exception(ex))
+                                logging.error("Something happened {}, skipping this job: {}".format(ex, job_link.text))
                                 continue
 
                         job_links = web_driver.find_elements(By.XPATH, xpath_jobs)

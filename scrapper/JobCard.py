@@ -29,7 +29,7 @@ class JobCard:
 
         self.job_title = job_link.text
         self.job_href = job_link.get_attribute("href")
-        self.jobId = JobCard.parseJobId(job_link)
+        self.jobId = parseJobId(job_link)
         logging.debug("Parsed id=%s from href: %s", self.jobId, self.job_href)
         # <a data-control-id="WoDK4MCAZ65F0+KHlkLT+Q==" tabindex="0" href="/jobs/view/2904894086/?eBP=JOB_SEARCH_ORGANIC&amp;refId=PeqWckmTbHQBk6CWHCra%2BQ%3D%3D&amp;trackingId=WoDK4MCAZ65F0%2BKHlkLT%2BQ%3D%3D&amp;trk=flagship3_search_srp_jobs" id="ember621" class="disabled ember-view job-card-container__link job-card-list__title">
         self.job_body_element = self.webdriver.find_element(By.XPATH,
