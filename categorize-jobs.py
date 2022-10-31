@@ -3,6 +3,7 @@ import datetime
 import json
 import logging
 import math
+import re
 
 import nltk
 from nltk import word_tokenize
@@ -39,6 +40,7 @@ class JobsCategorizer:
             counter -= 1
             if counter % 50 == 0:
                 print("Left to process:{}%".format(int(counter * 100 / len(fetchall))))
+            logging.info("%s\t%s\t%s", row[0], row[2], re.sub("[^a-zA-Z0-9 ]+", "", row[3]))
 
             job_id = row[0]
             hash_keywords = ""
@@ -87,7 +89,7 @@ class JobsCategorizer:
                      datetime.datetime.now(),
                      job_id])
 
-            corpus_calc = CorpusSimilarityCalculator("./corpus")
+            corpus_calc = CorpusSimilarityCalculator("./corpus/relevant")
             if hash_corpus != corpus_calc.get_hash():
                 result = corpus_calc.calc_similarity(row[1])
                 self.db.connect.execute(
@@ -101,7 +103,7 @@ class JobsCategorizer:
                      datetime.datetime.now(),
                      job_id])
 
-            corpus_irrelevant_calc = CorpusSimilarityCalculator("./corpus_irrelevant")
+            corpus_irrelevant_calc = CorpusSimilarityCalculator("./corpus/irrelevant")
             if hash_corpus_irrelevant != corpus_irrelevant_calc.get_hash():
                 result = corpus_irrelevant_calc.calc_similarity(row[1])
                 self.db.connect.execute(

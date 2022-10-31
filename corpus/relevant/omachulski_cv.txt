@@ -1,11 +1,14 @@
 Oleg Machulski
+
 Date of birth: 16.07.1974 (Moscow)
 E-mail: omachulski@gmail.com
 cell +7(926)920-03-38
 
 
+
+
 SUMMARY OF EXPERTISE
-Over 10 years of experience in IT project leadership, plus over 15 years of experience in software design and development. Key area of experience - fin-tech - banking, exchange,  oil logistics in the past.  Experience of working in both multinational and Russian companies providing development and simultaneous management of several projects. Deep involvement into the technical side of the project, including architecture design and code review.
+Over 10 years of experience in IT project leadership, plus over 15 years of experience in software design and development. Key area of experience - fintech, banking, exchange markets,  oil logistics in the past.  Experience of working in both multinational and Russian companies providing development and simultaneous management of several projects. Deep involvement into the technical side of the project, including architecture design and code review.
 Fluent English, Basic German.
 
 OBJECTIVE
@@ -23,13 +26,19 @@ EDUCATION
 
 Professional Experience
 sep.2017 - present - Moscow exchange (www.moex.com) Position - Senior solutions architect and delivery manager.
+2021 - present - IT leader and architect of key back-office system, which combines both CRM and KyC functions. System handles all customer support operations: KYC processes, regulatory checks, processing technical requests related to HFT servers and trading logins, listing new stock market bonds and shares. Splitting legacy java application into collection of business-area oriented microservices. Migrating business-logic from data layer (PL/SQL) to BPMN-aware services. My role: Leading the team, designing architecture, prototyping, organizing and leading demos with customers
+2019 - 2021 - migration of stock exchange backoffice from legacy architecture to java and .NET microservices and BPMS-driven solution. project from scratch, java+react js stack, gitlab ci, kubernetes deployment, more than 10 integrations both synchronous and asynchronous, camunda-BPM orchestration. Team of approx.25ppl. My role: Leading the team, designing architecture and CI, reviewing code and prototyping implementation, establishing support processes
 2017-2019 - Led development of derivatives exchange back-office platform. Team of 8ppl, migration from outdated stack to new architecture. Developing new features in parallel. Stack - Java, J2EE, Spring Cloud microservices, Vaadin-based UI. My role: Leading the team, designing architecture and CI, reviewing code and prototyping implementations.
-2019 - 2021 - migration of stock exchange backoffice from legacy architecture to microservices and BPMN-driven solution. project from scratch, java+react js stack, gitlab ci, kubernetes deployment, more than 10 integrations both synchronous and asynchronous, camunda-BPM orchestration. Team of approx.25ppl. My role: Leading the team, designing architecture and CI, reviewing code and prototyping implementation, establishing support processes
-2021 - present - IT leader and architect of CSD back-office system. System handles all customer support operations: KYC processes, regulatory checks, processing technical requests related to HFT servers and trading logins, listing new stock market bonds and shares. Splitting legacy java application into collection of business-area oriented microservices. Migrating business-logic from data layer (PL/SQL) to BPMN-aware services. My role: Leading the team, designing architecture, prototyping, organizing and leading demos with customers
-
-2017-2021 - Personal coding activities for fun:
-set of python-based tools to transcribe GPS track files (GPX) into geo-decoded names of cities visited, names of rivers passed by, etc.
-Set of python scripts intended to scrap official goverment resources into a local database. I was collecting information about purchases in the municipal services and names of affiliated persons and companies. Technically It was based on the Selenium web driver. Included load balancing of requests thru public proxy servers to avoid IP blocking and breaking captures, using OCR libraries.
+Key obligations on all projects:
+Design software aligned to business and IT requirements, transferring business problems into technical solutions
+Direct and motivate project’s team members, guide team to successful delivery
+Make sure technical solutions are integrated into our heterogeneous and highly automated infrastructure
+Manage project risks, issues, and dependencies
+Provide  reporting to project’s sponsor and key stakeholders
+2017-2022 - Personal coding activities for fun in python:
+scraping linkedin network - getting active jobs, analyzing them using NLP and AI libraries, and plot statistics results, using various multidimensional plotting tools. Most probably, I submitted my CV to your position because my toolset told me to do that
+Toolset to transcribe GPS track files (GPX) into geo-decoded names of cities visited, names of rivers passed by, etc.
+scrap official goverment resources into a local database. I was collecting information about purchases in the municipal services and names of affiliated persons and companies. Technically It was based on the Selenium web driver. Included load balancing of requests thru public proxy servers to avoid IP blocking and breaking captures, using OCR libraries.
 
 feb.2012 - sep.2017 - Luxoft (www.luxoft.com)
 Position Program Manager. 2 programs with total headcount around 60 ppl, 4 direct subordinate PMs, around 10 projects running in parallel.
@@ -38,20 +47,18 @@ Starting 2016 - *Financial Market Product Company* program - up to 10 simultaneo
 2014-2015 - *Top 5 financial rating company*, Publishing Wave2 project - development of functionality within in-house publishing system based on Quark Publishing and Pega platforms. Plus series of several other project. Total HC up to 15 ppl
 2014-2015 - *Financial Market Product Company*, development and support of data mining project, which uses web crawling and crowdsourcing approaches to gather data (Java stack, WebHarvest, Selenium); Total HC up to 20 ppl
 2013-2014 - *International Bank*  - data warehouse development and support , reports for risk department; deployment of ODS subsystem (Oracle DB, Oracle Streams);
-2012 - 2013 - *Top 5 russian bank*, MIS data warehouse project - gathering data and reporting for back-office effectiveness analysis (Teradata, Informatica, Oracle, In-house Sberbank technologies); Fixed price project with HC up to 45 ppl and duration around 1 year
+2012 - 2013 - *Top 5 russian bank*, MIS data warehouse project - gathering data and reporting for back-office effectiveness analysis (Teradata, Informatica, Oracle, In-house bank technologies); Fixed price project with HC up to 45 ppl and duration around 1 year
 
-
-
-July 2010-February2011 : TB-Inform (TNK-BP Group)  Position: Project Manager
-Deployment of production planning system in TNK-Lubricants (www.tnk-oil.ru) for Ryazan lubricants factory (Ortems planning system, SAP integration); took significant part in development of integration bridge between SAP ERP and Ortems system based on Microsoft Integration Services.
+July 2010-February2011 : TB-Inform (TNK/BP Group)  Position: Project Manager
+Deployment of production planning system in TNK-Lubricants (www.tnk-oil.ru) for Ryazan lubricants factory (Ortems planning system, SAP R/3 integration); took significant part in development of integration bridge between SAP ERP and Ortems system based on Microsoft Integration Services.
 
 2008-February2012 : RH Consulting;  Position: Project Manager
 Renaissance Credit Bank  data warehouse development and support, system for support of overdued debts, intranet portal (Informatica, Oracle)
-KMB-Bank (Intesa Sanpaolo subsidiary), data warehouse development and support, Support of migration from IPC ABS to Temenos T24, system for collecting of overdued debts, intranet portal (MS Integration, MS SQL)
+KMB-Bank (Intesa Sanpaolo subsidiary), data warehouse development and support, Support of migration from IPC ABS to Temenos T24, system for collecting of overdued debts, intranet portal (MS SQL, MS SSIS)
 
 December 2007 – 2008: Freelance
 	MIDAS - System for market research data processing and analysis. Includes support of tracking researches, through all stages of the process, including questionary preparation, 			 survey data input, internet surveys, data analysis and presentation building. System was developed with the team of 6 remote developers.
-	KMB-BANK – System for analysis of liquidity position for the treasury.
+	KMB-BANK – DWH subsystem to analyze liquidity position for the treasury.
 
 April 2005 – November 2007: ICICALL Consulting, Moscow, Russia (http://www.icicall.com).
 IT consulting for oil and gas companies. Position: Project Manager
@@ -73,10 +80,10 @@ Environment and Tools: MS Project, MS Office, Java, SQL, XML, Rational Rose, ErW
 
 April 2003 - April 2005: OILspace Inc., Moscow, Russia (www.oilspace.com)
 		IT consulting for oil and gas companies. Position: Team Leader.
-		Implemented Projects: CRM/SCM software solution for oil industry.
-		Responsibilities: manage team of 9 developers and 3 QA engineers, being contact person to the client, perform business analysis, define project development directions, prepare 				proposals, maintain project plans, lead system development.
+		Implemented Projects: CRM/SCM software solution for oil downstream planning and logistics.
+		Responsibilities: manage team of 9 developers and 3 QA engineers, being contact person to the client, business analysis, architecture design, presale, maintain project plans, lead system development.
 		Key Achievements: joined the project as a lead developer, sustained the project when the project team lost two key persons, became main contact person to the client and team leader.
-		Environment and Tools: Java, XML; MS Project, MS Office
+		Environment and Tools: Java, Oracle, XML, MS-Office scripting;
 
 
 1995 - 2003: software developer in various companies

@@ -6,13 +6,19 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
 
 
+def parseJobId(job_link):
+    job_href = job_link.get_attribute("href")
+    jobId = re.search("/jobs/view/([0-9]+)/.+", job_href).group(1)
+    return jobId
+
+
 class JobDetailsItem:
     def __init__(self, element):
         self.insight_text = BeautifulSoup(element.get_attribute("innerHTML"), features="html.parser").get_text()
         self.insight_href = ""
 
         links = element.find_elements(By.XPATH, """./a """)
-        if (len(links) > 0):
+        if len(links) > 0:
             self.insight_href = links[0].get_attribute("href")
             self.insight_text = links[0].text
 
@@ -23,7 +29,7 @@ class JobCard:
 
         self.job_title = job_link.text
         self.job_href = job_link.get_attribute("href")
-        self.jobId = re.search("/jobs/view/([0-9]+)/.+", self.job_href).group(1)
+        self.jobId = JobCard.parseJobId(job_link)
         logging.debug("Parsed id=%s from href: %s", self.jobId, self.job_href)
         # <a data-control-id="WoDK4MCAZ65F0+KHlkLT+Q==" tabindex="0" href="/jobs/view/2904894086/?eBP=JOB_SEARCH_ORGANIC&amp;refId=PeqWckmTbHQBk6CWHCra%2BQ%3D%3D&amp;trackingId=WoDK4MCAZ65F0%2BKHlkLT%2BQ%3D%3D&amp;trk=flagship3_search_srp_jobs" id="ember621" class="disabled ember-view job-card-container__link job-card-list__title">
         self.job_body_element = self.webdriver.find_element(By.XPATH,
@@ -59,12 +65,6 @@ class JobCard:
         self.job_details_items = [JobDetailsItem(elem) for elem in job_insights]
 
         pass
-
-    @staticmethod
-    def parseJobId(job_link):
-        job_href = job_link.get_attribute("href")
-        jobId = re.search("/jobs/view/([0-9]+)/.+", job_href).group(1)
-        return jobId
 
     @staticmethod
     def checkExistsInDB(connect, job_id):

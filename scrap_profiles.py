@@ -12,7 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
 from DbStructure import DbStructure
-from JobCard import JobCard
+from scrapper.JobCard import JobCard, parseJobId
 
 
 def get_filter_variations(scrapper_config):
@@ -90,8 +90,7 @@ class ProfilesScrapper:
 
                     for job_link in job_links:
                         if job_link not in already_clicked and not JobCard.checkExistsInDB(self.db.connect,
-                                                                                           JobCard.parseJobId(
-                                                                                               job_link)):
+                                                                                           parseJobId(job_link)):
                             job_link.click()
                             sleep(1)
                             try:

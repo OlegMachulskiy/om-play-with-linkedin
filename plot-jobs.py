@@ -10,9 +10,10 @@ sql = """
 select 
 	jrd.job_href , jrd.job_title , jrd.location , jrd.company_name ,
 	technically_relevant , position_relevant, area_relevant , relocation_relevant, irrelevant_relevant, 
-	cosine_similarity, 	ja.collocations , cosine_irrelevant
+	cosine_similarity, 	ja.collocations , log(1 + cosine_similarity / cosine_irrelevant)  as cosine_irrelevant
 from JOB_ANALYSIS ja
 join JOB_RAW_DATA jrd on ja.job_id = jrd.job_id   
+where ja.cosine_irrelevant<>0  
     """
 
 

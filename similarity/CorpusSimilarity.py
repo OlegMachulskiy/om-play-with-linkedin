@@ -62,7 +62,7 @@ class CorpusSimilarityCalculator(AbstractCalculator):
 
 
 if __name__ == '__main__':
-    calc = CorpusSimilarityCalculator("../corpus")
+    calc = CorpusSimilarityCalculator("../corpus/relevant")
     res = calc.calc_similarity(
         """ 
         We are specialist in Web/Mobile Application Development,E-Commerce solutions, iPhone, 
