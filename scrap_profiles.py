@@ -12,7 +12,7 @@ from selenium.webdriver.common.actions.wheel_input import ScrollOrigin
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-from DbStructure import DbStructure
+from persistence.DbStructure import DbStructure
 from scrapper.JobCard import JobCard, parseJobId
 
 

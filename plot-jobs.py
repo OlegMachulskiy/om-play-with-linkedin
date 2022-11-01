@@ -4,16 +4,20 @@ import logging
 import altair as alt
 import pandas
 
-from DbStructure import DbStructure
+from persistence.DbStructure import DbStructure
 
 sql = """
 select 
 	jrd.job_href , jrd.job_title , jrd.location , jrd.company_name ,
-	technically_relevant , position_relevant, area_relevant , relocation_relevant, irrelevant_relevant, 
-	cosine_similarity, 	ja.collocations , log(1 + cosine_similarity / cosine_irrelevant)  as cosine_irrelevant
-from JOB_ANALYSIS ja
-join JOB_RAW_DATA jrd on ja.job_id = jrd.job_id   
-where ja.cosine_irrelevant<>0  
+	jak.technically_relevant , jak.position_relevant, jak.area_relevant , jak.relocation_relevant, jak.irrelevant_relevant, 
+	jas.cosine_relevant , jas.spacy_relevant , jas.cosine_irrelevant , jas.spacy_irrelevant , 
+	jas.spacy_relevant / jas.spacy_irrelevant  as coloring, 
+	jas.spacy_relevant / jas.spacy_irrelevant as X, 
+	jas.cosine_relevant / jas.cosine_irrelevant as Y
+from JOB_RAW_DATA jrd 
+join JOB_ANL_KW jak on jak.job_id = jrd.job_id   
+join JOB_ANL_SIMILARITY jas on jas.job_id = jrd.job_id
+
     """
 
 
@@ -30,11 +34,11 @@ class JobsPlot:
         # plt.show()
 
         chart = alt.Chart(my_df).mark_point().encode(
-            x='cosine_similarity',
+            x='cosine_relevant',
             y='cosine_irrelevant',
-            color='technically_relevant',
+            color='coloring',
             href='job_href',
-            tooltip=['job_title', 'location', 'company_name', 'job_href'],
+            tooltip=['job_title', 'location', 'company_name', 'job_href', 'spacy_relevant', 'spacy_irrelevant'],
         ).properties(
             width=800,
             height=600

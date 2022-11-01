@@ -1,10 +1,12 @@
 import hashlib
+import logging
 import statistics
 import string
 from os import listdir
 from os.path import isfile, join
 
 import nltk
+import spacy
 from nltk import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -13,9 +15,10 @@ from similarity import AbstractCalculator
 nltk.download('stopwords')
 nltk.download('punkt')
 
+spacy_nlp = spacy.load('en_core_web_lg')
+
 stemmer = nltk.stem.porter.PorterStemmer()
 remove_punctuation_map = dict((ord(char), None) for char in string.punctuation)
-
 
 
 def stem_tokens(tokens):
@@ -55,24 +58,71 @@ class CorpusSimilarityCalculator(AbstractCalculator):
         text = nltk.Text(tokens)
         fd = nltk.FreqDist(text)
 
-        cosine_result = []
+        nltk_cosine_result = []
+        spacy_result = []
+
         for f in self.files:
             low_text = open(self.corpus_dir + "/" + f, "r", encoding="utf-8").read().lower()
-            # corpus_tokens = word_tokenize(low_text)
-            # corpus_text = nltk.Text(corpus_tokens)
-            cosine_result.append(cosine_sim(job_desc, low_text))
 
-        return {"cosine_similarity": statistics.mean(cosine_result)}
+            ##### nltk:
+            sim_nltk = cosine_sim(job_desc, low_text)
+            nltk_cosine_result.append(sim_nltk)
+
+            ##### spacy :
+            doc1 = spacy_nlp(low_text)
+            doc2 = spacy_nlp(job_desc)
+            sim_spacy = doc1.similarity(doc2)
+            spacy_result.append(sim_spacy)
+
+            logging.debug("spaCy: {}\t\tnltk: {}".format(sim_nltk, sim_spacy))
+
+        return {"cosine_similarity": statistics.mean(nltk_cosine_result),
+                "spacy_similarity": statistics.mean(spacy_result), }
 
 
 if __name__ == '__main__':
     calc = CorpusSimilarityCalculator("../corpus/relevant")
+
     res = calc.calc_similarity(
         """ 
-        We are specialist in Web/Mobile Application Development,E-Commerce solutions, iPhone, 
-        iPad and Android Apps development Services,SEO Services and Content Writing. IF you interest I would love 
-        to share more detail about our company with our work portfolio. 
-        java xml json python
+        IT Project Manager duties and responsibilities
+IT Project Managers are responsible for overseeing all aspects of any project in a company’s IT department, which includes managing a team of employees to ensure projects are completed on time and within their specified budgets. Some of an IT Project Manager’s day-to-day duties include:
+
+Setting project goals and coming up with plans to meet those goals
+Maintaining project timeframes, budgeting estimates and status reports
+Managing resources for projects, such as computer equipment and employees
+Coordinating project team members and developing schedules and individual responsibilities
+Implementing IT strategies that deliver projects on schedule and within budget
+Using project management tools to track project performance and schedule adherence
+Conducting risk assessments for projects
+Organizing meetings to discuss project goals and progress
+
         """)
-    print(calc.get_hash())
-    print(res)
+    print(res, calc.get_hash())
+
+    res = calc.calc_similarity(
+        """ 
+       We are seeking a hard-working and reliable construction worker to join our team. You will participate in a variety of construction projects and follow construction plans and instructions from the site supervisor. Although experience isn't essential, you will have to be physically fit and a fast learner.
+
+To be successful in this position, you will work well as part of a team, enjoy working outdoors, and be able to perform strenuous physical tasks.
+
+Construction Worker Responsibilities:
+Preparing construction sites, materials, and tools.
+Loading and unloading of materials, tools, and equipment.
+Removing debris, garbage, and dangerous materials from sites.
+Assembling and breaking down barricades, temporary structures, and scaffolding.
+Assisting contractors, e.g. electricians and painters, as required.
+Assisting with transport and operation of heavy machinery and equipment.
+Regulating traffic and erecting traffic signs.
+Following all health and safety regulations.
+Digging holes, tunnels, and shafts.
+Mixing, pouring, and leveling concrete.
+Construction Worker Job Requirements:
+No formal qualification is required, although a high school diploma may be preferred.
+Similar work experience may be beneficial.
+Licensure to work with hazardous materials may be required.
+Willingness to undertake training if necessary.
+Be mild-tempered and a team player.
+Be healthy, strong, and fit.
+        """)
+    print(res, calc.get_hash())
