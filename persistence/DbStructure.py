@@ -71,6 +71,20 @@ class DbStructure:
             self.connect.execute("CREATE UNIQUE INDEX IF NOT EXISTS JOB_ANL_SIMILARITY_IDX ON JOB_ANL_SIMILARITY (job_id)")
             logging.info("Success: CREATE UNIQUE INDEX IF NOT EXISTS JOB_ANL_SIMILARITY_IDX ON JOB_ANL_SIMILARITY")
 
+            self.connect.execute("""
+                                CREATE TABLE IF NOT EXISTS JOB_AXIS_SIMILARITY (
+                                    job_id                          INTEGER 
+                                                    REFERENCES JOB_RAW_DATA(job_id) ON DELETE CASCADE ,
+                                    hash_relevant                   varchar(200), 
+                                    axis                            varchar(200), 
+                                    cosine_relevant                 number(10, 8), 
+                                    updated_at                      datetime 
+                                );
+                            """)
+            logging.info("Success: CREATE TABLE IF NOT EXISTS JOB_AXIS_SIMILARITY")
+            self.connect.execute("CREATE  INDEX IF NOT EXISTS JOB_AXIS_SIMILARITY_IDX ON JOB_AXIS_SIMILARITY (job_id)")
+            logging.info("Success: CREATE  INDEX IF NOT EXISTS JOB_AXIS_SIMILARITY_IDX ON JOB_AXIS_SIMILARITY")
+
             # self.connect.execute("""
             #                     CREATE TABLE IF NOT EXISTS JOB_COLLOCATIONS (
             #                         job_id                          INTEGER

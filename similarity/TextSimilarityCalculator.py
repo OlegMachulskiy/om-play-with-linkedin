@@ -1,12 +1,9 @@
 import hashlib
-import logging
-import statistics
 import string
 from os import listdir
 from os.path import isfile, join
 
 import nltk
-import spacy
 from nltk import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -36,7 +33,7 @@ def cosine_sim(text1, text2):
     return ((tfidf * tfidf.T).A)[0, 1]
 
 
-class CorpusSimilarityCalculator(AbstractCalculator):
+class TextSimilarityCalculator(AbstractCalculator):
 
     def __init__(self, corpus_dir):
         self.corpus_dir = corpus_dir
@@ -54,30 +51,20 @@ class CorpusSimilarityCalculator(AbstractCalculator):
         text = nltk.Text(tokens)
         fd = nltk.FreqDist(text)
 
-        nltk_cosine_result = []
-        spacy_result = []
+        nltk_cosine_result = {}
 
         for f in self.files:
             low_text = open(self.corpus_dir + "/" + f, "r", encoding="utf-8").read().lower()
 
             ##### nltk:
             sim_nltk = cosine_sim(job_desc, low_text)
-            nltk_cosine_result.append(sim_nltk)
+            nltk_cosine_result[f] = sim_nltk
 
-            ##### spacy :
-            doc1 = spacy_nlp(low_text)
-            doc2 = spacy_nlp(job_desc)
-            sim_spacy = doc1.similarity(doc2)
-            spacy_result.append(sim_spacy)
-
-            logging.debug("spaCy: {}\t\tnltk: {}".format(sim_nltk, sim_spacy))
-
-        return {"cosine_similarity": statistics.mean(nltk_cosine_result),
-                "spacy_similarity": statistics.mean(spacy_result), }
+        return nltk_cosine_result
 
 
 if __name__ == '__main__':
-    calc = CorpusSimilarityCalculator("../corpus/relevant")
+    calc = TextSimilarityCalculator("../corpus/multi-axis")
 
     res = calc.calc_similarity(
         """ 

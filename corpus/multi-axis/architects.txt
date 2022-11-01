@@ -1,0 +1,123 @@
+Provides the architectural leadership to shape the vision, future direction, and roadmap for strategic business and technology projects.
+Persuade and influence Business and Information Technology (IT) leaders on the architectural direction for strategic technology projects.
+Continuously pursues strong technical acumen:
+Establishes working relationships with strategic and boutique technology providers.
+Leverages knowledge capital available through subscription research services.
+Leverages the Internet as a critical resource for related knowledge capital, inclusive of blogs, podcasts, webinar, etc.
+Attends conferences and engages in associated activities (e.g., conducting presentations, leading workshops, etc.).
+Consumes and contributes content from and to Open Source communities.
+Provides architecture thought leadership and expertise.
+Defines reference and implementation architectures.
+Develops proof-of-concept prototypes and initial implementation models.
+Monitors implementation activity to ensure architecture and design principles are upheld.
+Ensures implementation solutions support architecture objectives (availability, scalability, performance, security, etc.), as appropriate.
+Communicates complicated technical concepts effectively to a broad group of stakeholders.
+Establishes relationships with IT leaders, architects, and technical specialists for the purpose of advancing proposed architectural solutions.
+Utilizes a general understanding of the competitive landscape and corporate and business unit strategies to provide context for architectural decision making.
+Participates in special projects and performs other duties as assigned.
+
+Responsibilities
+
+Manage the implementation and operation of technical solutions, products, programs, and services, e.g. RPA or Salesforce program. Act as the business lead for the project with the vendor (i.e. UiPath or Salesforce), affinity partners, and internal teams as needed.
+Manage application implementation in accordance with all applicable legal and regulatory rules and regulations. Work closely with the Cybersecurity, Compliance, and IT teams to ensure program meets all banking and associated process audit and control standards and practices.
+Manage and coordinate the business project work streams. Develop implementation schedules, plan, track and monitor activities across all interested departments including Institutional Banking, Small Business Lending, and Leasing and evaluate and update plans and tasks as needed.
+Present status updates to leadership on a regular basis. Identify issues affecting project timeline, make recommendations as appropriate and ensure communications and meetings with all relevant parties are conducted to update internal and external partners on progress, obtain sponsorship and input, and address questions and/or issues.
+Manage the vendor relationship on an ongoing basis. Schedule regular calls and meetings to discuss program metrics and operations. Make recommendations to improve application operational efficiency, enhance program usage and increase understanding of the program.
+Design, develop, and deliver training and presentations to internal users. Presentations may include high level benefits with targeted audiences and/or hands-on end user systems training to teach internal partners on product and program self-service functionality and reporting.
+Act as the application(s) subject matter expert for internal users such as Institutional Banking, Small Business Lending, Leasing, and other lines of business or departments as needed.
+Resolve escalated application issues covering a variety of concerns such as cybersecurity, business usage, fraud and risk/compliance issues and user confusion about the application(s) and associated processes.
+Perform and/or lead other related programs as assigned.
+
+Position Summary
+The Carlyle Group is seeking an Enterprise Data Architect to lead the design and development of transformative data initiatives. The primary function of this position is to provide architectural and technological leadership, recommendations, and transition strategies to support the modernization of Carlyle's Data platforms, specifically as it pertains to advancing enterprise capabilities relating to data modeling, data engineering, data management and presentation. Strong Consulting and Business Analysis skills will be required to collaborate directly with key stakeholders across the business segments and technology organization to drive change and data modernization initiatives. The candidate should be a highly organized and creative thinker who can perform as a lead technologist to assess and design data solutions and interfaces for multiple LOB's. The Data Architect should translate business needs into technical data solutions with adherence to established data guidelines and approaches from an enterprise perspective.
+
+Working in a scaled agile environment individual's primary responsibilities include:
+
+Lead the design, development, implementation and maintenance of complex data systems and solutions
+Through expert knowledge translate high-level business requirements into well-designed data models, data integration mappings, and appropriate metadata, ensuring that business definitions and rules are properly incorporated
+Develop conceptual, logical and physical enterprise data models to support data analysis and business intelligence initiatives, and validates data models to adhere with business needs
+Create and maintain current and target-state (AWS, Snowflake, Data Engineering, Data Catalogue, Master Data Management) architectures
+Assist in designing on premise to AWS, Snowflake data migration patterns and validation strategy
+Define and manage data principles, architecture patterns, and guidelines to improve and maintain adequate data quality
+Collaborate with cross-segment functional teams, business analysts and data domain SMEs and segment architects to understand data consumers' needs and develop solutions that align with established principles and standards
+Evaluate and conduct POC's for emerging technologies as they relate to general technical and data capabilities
+
+
+Primary Responsibilities
+
+
+Lead project Discovery & Analysis of data related value streams by providing a consultative approach with business users and segment architects, framing the problem in relatable terms and proposing phased solutions. 15%
+Design detailed data flows, conceptual, logical, and physical enterprise data models. Perform data analysis to validate data models and to confirm ability to meet business needs 20%
+Establish overall architecture direction including data movement approach, architecture /
+technology strategy, and any other data-related considerations to ensure business value and
+to satisfy business requirements. 30%
+Coordinates, consults and, mentors/educates product owners, technical staff, project technical leaders and developers in data related architecture best practices. 20%
+Document the data architecture and environment, maintain a current and accurate view of enterprise data platform, data catalogue, data interfaces. 15%
+
+
+Requirements
+Education & Certificates
+
+
+Bachelor's Degree in Computer Science or related technical discipline
+10+ years of related experience is required
+AWS and Snowflake certified cloud practitioner
+
+
+Professional Experience
+
+
+10+ years of experience in Enterprise Data Management (DW, BI, MDM, DG, DQ), including 5+ years of experience in data modelling.
+Minimum 6 years of professional data analysis experience
+Experience with cloud architectures focused on analytics, data management and usage patterns
+Experience and understanding of major data architecture philosophies
+Experience developing reference architecture, principles, and standards
+Solid experience with performance optimization
+Good working knowledge of Traditional ETL, ELT, Data Warehousing and Data Marts
+Experience with entity relationship modelling, data architecture layers and design, metadata systems and tools, data quality tools and techniques
+Ability to research and learn new technologies and processes quickly
+Experience in data management technologies evaluation
+Ability to evaluate an existing architecture and document issues and suggested improvements
+Ability to architect solutions based on requirements
+Working knowledge of Agile Methodology
+Excellent leadership, communication, collaboration, and interpersonal skills
+
+
+Competencies & Attributes
+
+
+Experience in working with SaaS software solutions and cloud compute environment
+Experience with at least one programming or scripting language
+Experience using major data modelling tools
+Experience with major database platforms (SQL Server, Snowflake), cloud data platforms a big plus
+Proficient with evaluation, implementation and maintenance of Master Data Management and Data Catalogue software
+Deep understanding of the operational dependencies of applications, networks, systems, security and policies
+Data Quality Management and Data Architecture standardization experience
+Software Development Lifecycle (SDLC) knowledge
+Proficient Microsoft Office Skills
+
+
+Due to the high volume of candidates, please be advised that only candidates selected to interview will be contacted by The Carlyle Group.
+
+ob Description
+
+Partner with front office analysts and quants on both discretionary and systematic businesses
+Integrating financial and alternative data sets for research and trading
+Provide new ideas and enhancements to automate systems and processes
+Maintain and enhance our data platform and firm-wide software infrastructure
+Participate in the Level 3 support rotation
+Job Requirements
+
+Bachelor’s degree in Computer Science or a related STEM field
+3+ years of programming experience (Python preferred)
+Proven track record of business analysis while working directly with front office users
+Strong SQL experience (Microsoft SQL Server a plus)
+Excellent verbal and written communication skills
+Intellectual curiosity, strong analytical and quantitative skills, and a high degree of self-direction
+Effective time management and organization skills - ability to adapt to changing priorities and work well in an environment driven by delivering high quality solutions to the business
+Complementary Skills
+
+Strong knowledge of finance with experience working with front office teams
+Experience with financial data sets (e.g., Bloomberg, eMBS, Intex, MSCI, Refinitiv, S&P)
+AWS, EKS/Kubernetes, Kafka, and NoSQL experience
+UI development experience (Angular)

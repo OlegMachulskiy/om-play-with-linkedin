@@ -6,11 +6,17 @@ import math
 import re
 
 import nltk
+import spacy
 from nltk import word_tokenize
 
 from persistence.DbStructure import DbStructure
 from similarity.CorpusSimilarity import CorpusSimilarityCalculator
 from similarity.Keywords import KeywordsCalculator
+from similarity.TextSimilarityCalculator import TextSimilarityCalculator
+
+nltk.download('stopwords')
+nltk.download('punkt')
+spacy_nlp = spacy.load('en_core_web_lg')
 
 
 class JobsCategorizer:
@@ -118,6 +124,27 @@ class JobsCategorizer:
                  datetime.datetime.now(),
                  job_id])
 
+    def update_axis_similarity(self, job_id, full_text):
+        hash_relevant = ""
+        sql_res = self.db.connect.execute(
+            """select job_id, hash_relevant   from JOB_AXIS_SIMILARITY where job_id=?""",
+            [job_id]).fetchall()
+        if len(sql_res) > 0:
+            hash_relevant = sql_res[0][1]
+
+        corpus_calc = TextSimilarityCalculator("./corpus/multi-axis")
+        if hash_relevant != corpus_calc.get_hash():
+            result = corpus_calc.calc_similarity(full_text)
+            self.db.connect.execute(""" delete from JOB_AXIS_SIMILARITY where job_id = ? """, [job_id])
+            for k in result.keys():
+                self.db.connect.execute(
+                    """insert into JOB_AXIS_SIMILARITY (job_id, axis, hash_relevant, cosine_relevant, updated_at) 
+                    values (?, ?, ?, ?, ?)""",
+                    [job_id, k, corpus_calc.get_hash(),
+                     math.log(1 + result[k]),
+                     datetime.datetime.now()
+                     ])
+
     def run(self):
 
         fetchall = self.db.connect.execute("SELECT job_id, full_text, job_title, location FROM JOB_RAW_DATA").fetchall()
@@ -130,12 +157,10 @@ class JobsCategorizer:
             logging.info("%s\t%s\t%s", row[0], row[2], re.sub("[^a-zA-Z0-9 ]+", "", row[3]))
 
             job_id = row[0]
-            hash_keywords = ""
-            hash_corpus = ""
-            hash_corpus_irrelevant = ""
 
             self.update_keywords_calculator(job_id, row[1])
             self.update_similarity_calculator(job_id, row[1])
+            self.update_axis_similarity(job_id, row[1])
 
             self.db.connect.commit()
 

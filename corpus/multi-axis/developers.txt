@@ -1,0 +1,99 @@
+12+ year experience in application design, coding, testing, maintenance and debugging skills and strong experience with Java 8/J2EE distributed application development, REST, domain model microservices, Spring Boot, and API gateway.
+Experience with Cloud / AWS, Snowflake, Spark, etc.
+Good knowledge with DevOps tools like DevOps – Jira, Confluence and CI/CD pipelines (Jenkins)
+Demonstrated hands-on development with SQL, Postgres, NoSQL DB, Microservices Architecture
+Experience with messaging technologies like Kafka, and queuing technologies, etc.
+Experience leveraging open-source technologies and developing with service-oriented architecture
+Expert level J2EE/Java with Microservices background preferably in Spring boot, Spring cloud
+Expertise in architecting and developing highly reliable, fault-tolerant distributed applications with a focus on performance and scale.
+1-2 yrs of experience in python will be preferred
+Should have diverse financial experience in Investment domain and processes
+
+Java 8 or newer Development, Spring framework a must
+A clear understanding of Microservice architectures a must; Experience implementing MSE is a plus
+RESTful, SOAP services, XML
+Experience working with Relational DB's primarily MySQL; Solr is a plus
+Broad and deep knowledge/experience spanning a wide range of software development methodologies, technologies, and architectures - Service Oriented; SCRUM/Agile; MVC, SAAS; Including software design patterns; B2B
+Experience in designing, implementing, and supporting enterprise level applications
+Experience with development IDEs are a must; IntelliJ experience preferred but not required
+Operating Sys: Windows, Linux (primarily Redhat and CentOS), MacOs, Bash script
+Version & Quality Control: Git (Command line); Understanding of GitFlow concepts are a plus
+PM: Atlassian suite (JIRA, Confluence)
+Expert knowledge of Software Development Life Cycle in an Agile/SCRUM environment
+Expert knowledge of Object-Oriented Development methodologies
+Strong relational database design and development experience
+Demonstrated ability to build, coach, and support high performance teams
+Innovative, results-driven expert in enterprise Application Development, Architecture, Integration, and Implementation
+Experienced in complex requirements analysis
+Experience in large internet eCommerce environments and technologies
+
+Experience in developing applications which consume a large volume of data through direct integrations is a must. Preferably identity and access entitlement data.
+Understanding (or willingness to learn) how various platforms (Windows, Linux, SQL Server, Oracle, Postgres, etc.) organize their internal identity and entitlement data
+Background in programming, networking, and OS. Experience in development, tooling, operations, and support for production java web applications - this should include familiarity with network device configurations)
+Experience in the full lifecycle of application development includes understanding of CI/CD, application test cases and performance testing
+Java Application Development. Familiarity with java (v15), Spring and Maven
+Comfortable with light threading and alternative asynchronous frameworks / methodologies
+To qualify for the role, you must have A bachelor's degree in a related field and approximately 5+ years of related work experience
+Familiarity with the following libraries is nice to have
+Apache Camel
+Flyway
+JOOQ
+Activiti Open Source
+Lombok
+Quartz (scheduler)
+Python
+Ability to read / write python scripts for data processing
+Experience with FrontEnd development. Familiarity with typescript & javascript, Angular, html & CSS. Experience in debugging front-end issues using browser development tools. Experience with third party angular component libraries (primeng experience is a plus)
+Strong SQL skills
+Familiarity with SQL DDL, DQL, and DML
+Should be comfortable with CTEs and advanced SQL querying
+Familiarity with BPMN (business process markup notation) is a plus
+Cloud environments
+Knowledge of Azure / Azure Dev Ops is a plus
+Understanding of LDAP filtering
+Networking
+Basic networking knowledge
+Familiarity with Load Balancers and their configuration
+Strong understanding of REST / json-rpc type API design and usage
+Basic understanding of Oauth2 / OpenID Connect (specific experience with Okta a plus)
+Experience with architectural decisions on backend and library choices for custom applications is a plus
+Understanding of SOX. SOC1 and SOC2 requirements in application design.
+
+
+
+Participate in projects associated with the technology domain, including installation, upgrades, and deployment efforts
+Identify opportunity for service quality and availability within the technology domain environment
+Review and analyze technical assignments or challenges that are related to low to medium risk deliverables and that require research, evaluation, and selection of alternative technology domains
+Present recommendations for resolving issues or may escalate issues as needed to meet established service level agreements
+Exercise independent judgment while also developing understanding of given technology domain in reference to security and compliance requirements
+Collaborate and consult with technology colleagues, internal partners, and stakeholders
+Required Qualifications, US:
+2+ years of Software Engineering experience, or equivalent demonstrated through one or a combination of the following: work experience, training, military experience, education
+2+ Years of Big Data Experience
+2+ Years of Python, PySpark Experience
+2+ Years of Hadoop Administration Experience
+Familiarity with CI/CD Pipelines, Working with major projects handling Big Data: Jenkins, Sonar Cube, Blackduck, uDeploy, Artifactory
+Desired Qualifications:
+Ability to develop partnerships and collaborate with other business and Technology Team members.
+Knowledge and understanding of technology performance: analysis and tuning for applications.
+Financial Industry Experience
+
+
+Create SQL scripts that will fulfill the user requests and submit the scripts to the DBAs for execution.
+Set up automated processes, when required, for handover to the deployment team.
+Responsible for development of high-quality database solutions.
+Review and interpret ongoing business report requirements including researching data requirements.
+Analyze existing SQL queries for performance improvements and, suggest new queries.
+Develop procedures and scripts for data migration in addition to, providing timely scheduled management reporting.
+Investigate exceptions.
+Keep records of all scripts and queries associated with each request.
+Identify frequently submitted requests, research potential solutions, and implement the solutions to minimize future errors.
+Monitor internal ticketing system as well as executive requests through email.
+Research the requests and acquire additional information from the users if necessary.
+Design, develop and maintain SQL applications/ETL, databases, reports, and programs.
+Create, document, and implement test plans.
+Set up and maintain automated SQL scheduled tasks.
+Investigate and provide support to the business regarding all data related issues.
+Design, build, and maintain efficient, reusable, and reliable code.
+Document current and new processes.
+Ensure the best possible performance and maintain the quality and responsiveness of applications.
